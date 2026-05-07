@@ -1,0 +1,194 @@
+@import 'tailwindcss';
+
+:root {
+  --font-serif: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+
+  --bg: #f9f9f9;
+  --text: #525252;
+  --text-muted: #a3a3a3;
+  --text-heading: #0a0a0a;
+  --accent: #2563eb;
+  --line: rgb(229 229 229 / 0.9);
+  --header-bg: color-mix(in srgb, var(--bg) 72%, transparent);
+  --gold: #c8a24a;
+  --auth-line: #d4d4d4;
+  --auth-line-focus: #222222;
+
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background-color: var(--bg);
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='luxury-dark'] {
+  --bg: #070707;
+  --text: #9b9b9b;
+  --text-muted: #7e7e7e;
+  --text-heading: #f3f3f3;
+  --accent: #c8a24a;
+  --gold: #c8a24a;
+  --line: rgb(200 162 74 / 0.28);
+  --header-bg: color-mix(in srgb, #040404 80%, transparent);
+  --auth-line: rgba(200, 162, 74, 0.38);
+  --auth-line-focus: rgba(226, 200, 117, 0.95);
+}
+
+@media (min-width: 640px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='luxury-dark']) {
+    --bg: #111111;
+    --text: #a3a3a3;
+    --text-muted: #737373;
+    --text-heading: #fafafa;
+    --accent: #60a5fa;
+    --line: rgb(82 82 82 / 0.72);
+    --header-bg: color-mix(in srgb, #111111 74%, transparent);
+  }
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+[data-theme='luxury-dark'] body {
+  background-image:
+    radial-gradient(ellipse at top, rgb(200 162 74 / 0.08), transparent 45%);
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.font-serif-blog {
+  font-family: var(--font-serif);
+}
+
+h1.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+  margin: 0;
+}
+
+h1.article-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  color: var(--text-heading);
+  background-color: rgb(23 23 23 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  code {
+    background-color: rgb(255 255 255 / 0.08);
+  }
+}
+
+.page-shell {
+  width: 100%;
+  max-width: min(76rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 正文段落：偏宽的阅读宽度，大屏比 max-w-prose 略舒展 */
+.prose-width {
+  max-width: 42rem;
+}
+
+@media (min-width: 768px) {
+  .prose-width {
+    max-width: 44rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .prose-width {
+    max-width: 48rem;
+  }
+}
+
+/* 抽屉登录/注册表单：显式控制 antd 输入框占位符对比度 */
+.auth-drawer-form .ant-input::placeholder,
+.auth-drawer-form .ant-input-password input::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+:root[data-theme='luxury-dark'] .auth-drawer-form .ant-input::placeholder,
+:root[data-theme='luxury-dark']
+  .auth-drawer-form
+  .ant-input-password
+  input::placeholder {
+  color: #7f7a6d !important;
+  opacity: 1 !important;
+}
+
+/* 抽屉输入框下划线（普通 Input + Password 包裹层） */
+.auth-drawer-form .ant-input {
+  border-bottom: 1px solid var(--auth-line) !important;
+}
+
+.auth-drawer-form .ant-input-affix-wrapper {
+  border: 0 !important;
+  border-bottom: 1px solid var(--auth-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.auth-drawer-form .ant-input-affix-wrapper .ant-input {
+  border-bottom: 0 !important;
+}
+
+.auth-drawer-form .ant-input:focus,
+.auth-drawer-form .ant-input-affix-wrapper:focus-within {
+  border-bottom-color: var(--auth-line-focus) !important;
+}
