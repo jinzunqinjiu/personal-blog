@@ -85,9 +85,7 @@ export default function AuthDrawerForm({ mode, onModeChange, onSubmit }: Props) 
           name="password"
           rules={[
             { required: true, message: mode === 'login' ? '请输入密码' : '请设置密码' },
-            ...(mode === 'register'
-              ? [{ min: 8, message: '密码至少 8 位字符' }]
-              : []),
+            { min: 6, message: '密码至少 6 位字符' },
           ]}
           className="!mb-0"
         >

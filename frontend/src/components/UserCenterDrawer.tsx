@@ -1,7 +1,9 @@
-import { Avatar, Badge, Divider, Drawer } from 'antd'
+import { Avatar, Badge, Divider, Drawer, message } from 'antd'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { login as loginRequest, register as registerRequest } from '../api/auth.ts'
+import { getApiErrorMessage } from '../api/http.ts'
 import { useAuth } from '../contexts/AuthContext.tsx'
 import { UI_TEXT } from '../config/uiText.ts'
 import { useTheme } from '../contexts/ThemeContext.tsx'
@@ -24,7 +26,7 @@ function slugListTitles(slugs: readonly string[]) {
 }
 
 export default function UserCenterDrawer({ open, onClose }: Props) {
-  const { isLoggedIn, login, logout } = useAuth()
+  const { isLoggedIn, user, loginWithSession, logout } = useAuth()
   const { theme } = useTheme()
   const isDark = theme === 'luxury-dark'
   const [mode, setMode] = useState<AuthMode>('login')
@@ -32,11 +34,37 @@ export default function UserCenterDrawer({ open, onClose }: Props) {
   const favorites = slugListTitles([...MOCK_FAVORITE_SLUGS])
   const recent = slugListTitles([...MOCK_RECENT_SLUGS])
 
-  function submitAuth() {
-    // 当前阶段先走 mock 登录流程，后续可替换为真实接口
-    login()
-    setMode('login')
-    onClose()
+  async function submitAuth(values: {
+    nickname?: string
+    email: string
+    password: string
+  }) {
+    try {
+      if (mode === 'register') {
+        if (!values.nickname?.trim()) {
+          message.error('请输入昵称')
+          return
+        }
+        const data = await registerRequest({
+          nickname: values.nickname.trim(),
+          email: values.email.trim(),
+          password: values.password,
+        })
+        loginWithSession(data)
+        message.success('注册成功')
+      } else {
+        const data = await loginRequest({
+          email: values.email.trim(),
+          password: values.password,
+        })
+        loginWithSession(data)
+        message.success('登录成功')
+      }
+      setMode('login')
+      onClose()
+    } catch (err) {
+      message.error(getApiErrorMessage(err))
+    }
   }
 
   return (
@@ -99,17 +127,17 @@ export default function UserCenterDrawer({ open, onClose }: Props) {
               size={52}
               className={isDark ? '!bg-[#d3b24f] !text-[#151515]' : '!bg-neutral-100 !text-neutral-400'}
             >
-              {isDark ? 'M' : '👤'}
+              {(user?.nickname ?? 'U').slice(0, 1).toUpperCase()}
             </Avatar>
             <div>
               <p
                 className="font-serif-blog text-[1.5rem] leading-none"
                 style={{ color: isDark ? '#f2efe8' : '#171717' }}
               >
-                {isDark ? UI_TEXT.drawer.memberName : UI_TEXT.drawer.guestName}
+                {user?.nickname ?? UI_TEXT.drawer.guestName}
               </p>
               <p className="mt-2 text-xs tracking-[0.08em]" style={{ color: isDark ? '#8f8a7a' : '#a3a3a3' }}>
-                {isDark ? UI_TEXT.drawer.memberTagline : UI_TEXT.drawer.guestId}
+                {user?.email ?? `ID · ${user?.id ?? '—'}`}
               </p>
             </div>
           </section>
