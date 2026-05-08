@@ -18,6 +18,7 @@ class UserPublic(BaseModel):
     id: int
     nickname: str
     email: EmailStr
+    is_vip: bool
 
 
 class TokenResponse(BaseModel):

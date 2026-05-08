@@ -1,6 +1,7 @@
 export const UI_TEXT = {
   brand: {
-    brandTitle: 'Essay',
+    brandTitle: '随笔',
+    brandSubtitle: 'ESSAY',
   },
   drawer: {
     personalCenterTitle: '个人中心',

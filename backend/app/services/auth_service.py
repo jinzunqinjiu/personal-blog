@@ -21,6 +21,9 @@ def register_user(db: Session, payload: RegisterRequest) -> User:
         hashed_password=get_password_hash(payload.password),
     )
     db.add(user)
+    db.flush()
+    # 业务规则：注册顺序前 100 名用户自动标记为 VIP。
+    user.is_vip = user.id <= 100
     db.commit()
     db.refresh(user)
     return user

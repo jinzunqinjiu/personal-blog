@@ -1,8 +1,8 @@
 import { NavLink, Outlet, Link as RouterLink } from 'react-router-dom'
 
+import BrandLogo from '../components/BrandLogo.tsx'
 import HeaderAccountButton from '../components/HeaderAccountButton.tsx'
 import ThemeToggleButton from '../components/ThemeToggleButton.tsx'
-import { UI_TEXT } from '../config/uiText.ts'
 
 function navLinkClass({ isActive }: { isActive: boolean }) {
   return [
@@ -24,16 +24,16 @@ export default function RootLayout() {
           backdropFilter: 'blur(20px) saturate(180%)',
         }}
       >
-        <div className="page-shell flex min-h-[3.25rem] items-center justify-between gap-4 px-6 py-3 md:min-h-[3.5rem] md:px-8 md:py-3.5">
+        <div className="flex min-h-[4.8rem] w-full items-center justify-between gap-4 px-8 py-3 md:min-h-[5rem] md:px-10 md:py-3.5">
           <RouterLink
             to="/"
-            className="font-serif-blog text-xl font-bold tracking-[0.04em] no-underline md:text-[1.35rem]"
+            className="no-underline"
             style={{ color: 'var(--text-heading)' }}
           >
-            {UI_TEXT.brand.brandTitle}
+            <BrandLogo />
           </RouterLink>
           <nav
-            className="flex flex-wrap items-center justify-end gap-x-8 gap-y-2"
+            className="flex flex-wrap items-center justify-end gap-x-7 gap-y-2"
             aria-label="主导航"
           >
             <NavLink to="/" end className={navLinkClass}>
@@ -48,7 +48,7 @@ export default function RootLayout() {
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[calc(5.25rem+env(safe-area-inset-top))] md:px-8 md:pt-[calc(5.75rem+env(safe-area-inset-top))] lg:pt-[calc(6rem+env(safe-area-inset-top))]">
+      <main className="flex flex-1 flex-col pb-[max(2rem,env(safe-area-inset-bottom))] pt-[calc(5.8rem+env(safe-area-inset-top))] md:pt-[calc(6.2rem+env(safe-area-inset-top))] lg:pt-[calc(6.4rem+env(safe-area-inset-top))]">
         <Outlet />
       </main>
     </div>

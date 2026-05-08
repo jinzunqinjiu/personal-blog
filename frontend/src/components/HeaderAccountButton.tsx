@@ -14,7 +14,7 @@ export default function HeaderAccountButton() {
   const label = isLoggedIn ? 'Account' : 'Login'
 
   const base =
-    'inline-flex h-8 items-center justify-center rounded-full px-3 text-[0.625rem] leading-none font-semibold uppercase tracking-[0.12em] transition-colors'
+    'inline-flex h-7 items-center justify-center rounded-full px-2.5 text-[0.56rem] leading-none font-semibold uppercase tracking-[0.1em] transition-colors'
 
   const loginStyles = isDark
     ? 'border border-[var(--gold)]/70 bg-transparent text-[var(--gold)] hover:bg-[var(--gold)]/20 hover:!text-[var(--gold)]'

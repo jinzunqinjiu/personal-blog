@@ -2,6 +2,7 @@ export type UserPublic = {
   id: number
   nickname: string
   email: string
+  is_vip: boolean
 }
 
 export type TokenResponse = {

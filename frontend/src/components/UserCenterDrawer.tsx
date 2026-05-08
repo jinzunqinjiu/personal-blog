@@ -1,4 +1,4 @@
-import { Avatar, Badge, Divider, Drawer, message } from 'antd'
+import { Avatar, Badge, Divider, Drawer, Tooltip, message } from 'antd'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -130,12 +130,99 @@ export default function UserCenterDrawer({ open, onClose }: Props) {
               {(user?.nickname ?? 'U').slice(0, 1).toUpperCase()}
             </Avatar>
             <div>
-              <p
-                className="font-serif-blog text-[1.5rem] leading-none"
-                style={{ color: isDark ? '#f2efe8' : '#171717' }}
-              >
-                {user?.nickname ?? UI_TEXT.drawer.guestName}
-              </p>
+              <div className="flex items-center gap-2">
+                <p
+                  className="font-serif-blog text-[1.5rem] leading-none"
+                  style={{ color: isDark ? '#f2efe8' : '#171717' }}
+                >
+                  {user?.nickname ?? UI_TEXT.drawer.guestName}
+                </p>
+                {user?.is_vip ? (
+                  <Tooltip title="尊贵的内测玩家">
+                    <span
+                    className="inline-flex h-6 items-center gap-1.5 rounded-full border px-2"
+                    style={{
+                      borderColor: isDark ? 'rgba(226, 200, 117, 0.58)' : 'rgba(23, 23, 23, 0.22)',
+                      backgroundColor: isDark
+                        ? 'linear-gradient(135deg, rgba(226, 200, 117, 0.2), rgba(86, 64, 24, 0.25))'
+                        : 'linear-gradient(135deg, rgba(26, 26, 26, 0.08), rgba(26, 26, 26, 0.04))',
+                      boxShadow: isDark
+                        ? '0 0 10px rgba(226,200,117,0.2), inset 0 0 8px rgba(226,200,117,0.14)'
+                        : '0 0 8px rgba(23,23,23,0.12)',
+                    }}
+                    aria-label="尊贵的内测玩家"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 28 28"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <linearGradient id="vipCrownGradient" x1="4" y1="6" x2="24" y2="22" gradientUnits="userSpaceOnUse">
+                          <stop offset="0%" stopColor={isDark ? '#fff4cf' : '#3a3a3a'}>
+                            <animate attributeName="offset" values="0;0.15;0" dur="2.6s" repeatCount="indefinite" />
+                          </stop>
+                          <stop offset="55%" stopColor={isDark ? '#e2c875' : '#111111'} />
+                          <stop offset="100%" stopColor={isDark ? '#a6802f' : '#555555'}>
+                            <animate attributeName="offset" values="1;0.85;1" dur="2.6s" repeatCount="indefinite" />
+                          </stop>
+                        </linearGradient>
+                      </defs>
+                      <circle
+                        cx="14"
+                        cy="14"
+                        r="11.2"
+                        stroke={isDark ? 'rgba(255,236,180,0.5)' : 'rgba(23,23,23,0.22)'}
+                        strokeWidth="1.1"
+                        strokeDasharray="4 4"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="rotate"
+                          from="0 14 14"
+                          to="360 14 14"
+                          dur="7s"
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                      <path
+                        d="M6.2 10.3L10.1 13.4L14 7.4L17.9 13.4L21.8 10.3L18.8 20.1H9.2L6.2 10.3Z"
+                        fill="url(#vipCrownGradient)"
+                      />
+                      <path
+                        d="M10.1 13.4L14 7.4L17.9 13.4"
+                        stroke={isDark ? '#fff6d7' : '#f8f8f8'}
+                        strokeWidth="1.1"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle cx="14" cy="14.2" r="1.35" fill={isDark ? '#fff2c5' : '#fafafa'}>
+                        <animate
+                          attributeName="r"
+                          values="1;1.7;1"
+                          dur="1.8s"
+                          repeatCount="indefinite"
+                        />
+                        <animate
+                          attributeName="opacity"
+                          values="1;0.55;1"
+                          dur="1.8s"
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                    </svg>
+                    <span
+                      className="text-[10px] font-semibold tracking-[0.14em]"
+                      style={{ color: isDark ? '#f0db9a' : '#171717' }}
+                    >
+                      VIP
+                    </span>
+                    </span>
+                  </Tooltip>
+                ) : null}
+              </div>
               <p className="mt-2 text-xs tracking-[0.08em]" style={{ color: isDark ? '#8f8a7a' : '#a3a3a3' }}>
                 {user?.email ?? `ID · ${user?.id ?? '—'}`}
               </p>
