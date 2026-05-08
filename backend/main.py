@@ -6,12 +6,10 @@ from app.core.config import settings
 from app.core.database import Base, engine
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
+_cors_list = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=_cors_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

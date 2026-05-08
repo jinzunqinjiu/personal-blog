@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60
 
+    # 逗号分隔，例如: https://blog.example.com,http://localhost
+    cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
+
 
 settings = Settings()
 
