@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
+import AuthorAvatar from './AuthorAvatar.tsx'
 import PostEngagementActions from './PostEngagementActions.tsx'
+import { postCategoryLabel } from '../config/postCategories.ts'
 import type { BlogPostPreview } from '../types/post.ts'
 import { formatDotDate } from '../utils/formatDotDate.ts'
 
@@ -19,17 +21,22 @@ export function PostTitleRow({
 }: PostTitleRowProps) {
   const inner = (
     <>
-      <div className="flex items-center gap-2 md:gap-2.5">
-        <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)] md:text-xs">
-          {post.category}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs md:gap-x-4">
+        <span className="flex min-w-0 max-w-full items-center gap-2">
+          <AuthorAvatar nickname={post.authorNickname} src={post.authorAvatarUrl} size="sm" />
+          <span className="truncate font-medium text-[var(--text-heading)]">{post.authorNickname}</span>
         </span>
-        <span
-          className="h-px w-9 shrink-0 self-center"
-          style={{ backgroundColor: 'var(--line)' }}
-          aria-hidden
-        />
+        <span className="select-none text-[var(--text-muted)] opacity-70" aria-hidden>
+          ·
+        </span>
+        <span className="shrink-0 text-[11px] font-semibold tracking-[0.12em] text-[var(--accent)] md:text-xs">
+          {postCategoryLabel(post.category)}
+        </span>
+        <span className="select-none text-[var(--text-muted)] opacity-70" aria-hidden>
+          ·
+        </span>
         <time
-          className="shrink-0 text-xs tabular-nums text-[var(--text-muted)]"
+          className="shrink-0 tabular-nums text-[var(--text-muted)]"
           dateTime={post.publishedAt}
         >
           {formatDotDate(post.publishedAt)}

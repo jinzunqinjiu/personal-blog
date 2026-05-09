@@ -3,6 +3,8 @@ export type UserPublic = {
   nickname: string
   email: string
   is_vip: boolean
+  /** 登录接口返回；旧版本地缓存可能没有 */
+  avatar_url?: string
 }
 
 export type TokenResponse = {

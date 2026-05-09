@@ -1,10 +1,16 @@
 import type { BlogPostPreview } from '../types/post.ts'
 
+function mockAuthorAvatar(seed: string): string {
+  return `https://api.dicebear.com/7.x/notionists/png?seed=${encodeURIComponent(seed)}&size=128`
+}
+
 export const mockPosts: BlogPostPreview[] = [
   {
     id: '1',
     slug: 'kyoto-morning',
     category: 'LIFE',
+    authorNickname: '默言',
+    authorAvatarUrl: mockAuthorAvatar('默言'),
     title: '京都的清晨与那些被遗忘的瞬间',
     accentTitle: true,
     summary:
@@ -18,6 +24,8 @@ export const mockPosts: BlogPostPreview[] = [
     id: '2',
     slug: 'frontend-sensory-future',
     category: 'TECHNOLOGY',
+    authorNickname: '南枫',
+    authorAvatarUrl: mockAuthorAvatar('南枫'),
     title: '未来前端开发的感官体验',
     summary:
       '当界面不再只是点击率与转化率，触感、节律与留白同样构成体验。技术是手段，对人的感知才是真题目。',
@@ -30,6 +38,8 @@ export const mockPosts: BlogPostPreview[] = [
     id: '3',
     slug: 'vite-react-blog-frontend',
     category: 'TECHNOLOGY',
+    authorNickname: 'liyumin',
+    authorAvatarUrl: mockAuthorAvatar('liyumin'),
     title: '用 Vite + React 搭个人博客前台',
     accentTitle: true,
     summary:
@@ -43,6 +53,8 @@ export const mockPosts: BlogPostPreview[] = [
     id: '4',
     slug: 'tailwind-design-tokens',
     category: 'DESIGN',
+    authorNickname: '纸鸢',
+    authorAvatarUrl: mockAuthorAvatar('纸鸢'),
     title: '在样式里养好一套变量',
     summary:
       '色彩与字重尽量落在 CSS 变量上，正文与次级信息层次分明，改版时就不必全局搜颜色。',

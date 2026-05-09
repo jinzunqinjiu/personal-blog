@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react'
 
+import { logoutRemote } from '../api/auth.ts'
 import { clearAuthStorage, getStoredToken, getStoredUser, persistAuth } from '../api/tokenStorage.ts'
 import type { TokenResponse, UserPublic } from '../types/authApi.ts'
 
@@ -36,13 +37,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  useEffect(() => {
+    const syncFromStorage = () => {
+      setToken(getStoredToken())
+      setUser(getStoredUser())
+    }
+    const forceLogout = () => {
+      clearAuthStorage()
+      setToken(null)
+      setUser(null)
+    }
+    window.addEventListener('muse:auth-sync', syncFromStorage)
+    window.addEventListener('muse:auth-logout', forceLogout)
+    return () => {
+      window.removeEventListener('muse:auth-sync', syncFromStorage)
+      window.removeEventListener('muse:auth-logout', forceLogout)
+    }
+  }, [])
+
   const loginWithSession = useCallback((payload: TokenResponse) => {
     persistAuth(payload.access_token, payload.user)
     setToken(payload.access_token)
     setUser(payload.user)
   }, [])
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    try {
+      await logoutRemote()
+    } catch {
+      /* 仍清理本地 */
+    }
     clearAuthStorage()
     setToken(null)
     setUser(null)

@@ -125,6 +125,7 @@ export default function UserCenterDrawer({ open, onClose }: Props) {
           >
             <Avatar
               size={52}
+              src={user?.avatar_url}
               className={isDark ? '!bg-[#d3b24f] !text-[#151515]' : '!bg-neutral-100 !text-neutral-400'}
             >
               {(user?.nickname ?? 'U').slice(0, 1).toUpperCase()}

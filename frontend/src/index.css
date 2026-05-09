@@ -201,3 +201,345 @@ code {
 .auth-drawer-form .ant-input-affix-wrapper:focus-within {
   border-bottom-color: var(--auth-line-focus) !important;
 }
+
+.write-form {
+  margin-top: 2rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: color-mix(in srgb, var(--bg) 86%, white 14%);
+}
+
+:root[data-theme='luxury-dark'] .write-form {
+  background: color-mix(in srgb, var(--bg) 84%, #151515 16%);
+}
+
+.write-form .ant-form-item-label > label {
+  color: var(--text-heading) !important;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.write-field .ant-input,
+.write-field .ant-input-affix-wrapper,
+.write-field .ant-select-selector,
+.write-field .ant-input-textarea textarea {
+  border-radius: 0.8rem !important;
+  border-color: var(--line) !important;
+  background: transparent !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+}
+
+.write-field .ant-input::placeholder,
+.write-field .ant-input-textarea textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.write-submit.ant-btn {
+  height: 44px;
+  min-width: 124px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  background: var(--text-heading) !important;
+  border-color: var(--text-heading) !important;
+}
+
+.write-submit.ant-btn:hover {
+  opacity: 0.9;
+}
+
+.md-editor .ant-segmented {
+  background: color-mix(in srgb, var(--bg) 85%, white 15%);
+}
+
+.md-editor-textarea.ant-input {
+  border-radius: 0.9rem !important;
+}
+
+.md-editor-preview {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 88%, white 12%);
+  color: var(--text);
+}
+
+.compose-form {
+  position: relative;
+  padding-bottom: 8.2rem;
+}
+
+.compose-title-input.ant-input {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 5.2vw, 4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  /* 略提高透明度：标题字更轻、更透气 */
+  color: color-mix(in srgb, var(--text-heading) 52%, transparent) !important;
+}
+
+.compose-title-input.ant-input::placeholder {
+  color: color-mix(in srgb, var(--text-heading) 34%, transparent);
+}
+
+:root[data-theme='luxury-dark'] .compose-title-input.ant-input {
+  color: color-mix(in srgb, var(--text-heading) 48%, transparent) !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-title-input.ant-input::placeholder {
+  color: color-mix(in srgb, var(--text-heading) 30%, transparent);
+}
+
+.compose-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.compose-meta-pill {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.compose-meta-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.compose-category-select .ant-select-selection-item,
+.compose-category-select .ant-select-content-value {
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--text-muted) !important;
+}
+
+/* 黑色主题：Ant Design 6 / rc-select 用 token 的深色字，需覆盖组件 CSS 变量与内容区 */
+:root[data-theme='luxury-dark'] .compose-category-select.ant-select {
+  --ant-select-color: var(--gold) !important;
+  --ant-color-text: var(--gold) !important;
+  color: var(--gold) !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-content,
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-content-value,
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-input {
+  color: var(--gold) !important;
+}
+
+/* 旧版 DOM（若仍存在） */
+:root[data-theme='luxury-dark'] .compose-category-select.ant-select .ant-select-selector {
+  color: var(--gold) !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-selection-item {
+  color: var(--gold) !important;
+  opacity: 1 !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-selection-placeholder {
+  color: color-mix(in srgb, var(--gold) 55%, transparent) !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-arrow,
+:root[data-theme='luxury-dark'] .compose-category-select .ant-select-suffix {
+  color: var(--gold) !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-category-select .anticon {
+  color: inherit !important;
+}
+
+.compose-category-dropdown.ant-select-dropdown {
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.compose-category-dropdown .ant-select-item-option-content {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* 撰写页分类下拉：黑色主题（luxury-dark） */
+:root[data-theme='luxury-dark'] .compose-category-dropdown.ant-select-dropdown {
+  background: #101010 !important;
+  border: 1px solid rgb(200 162 74 / 0.22);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+}
+
+:root[data-theme='luxury-dark'] .compose-category-dropdown .ant-select-item,
+:root[data-theme='luxury-dark'] .compose-category-dropdown .ant-select-item-option {
+  color: #c8c8c8 !important;
+  border-radius: 8px;
+}
+
+:root[data-theme='luxury-dark'] .compose-category-dropdown .ant-select-item-option-active {
+  background: rgb(200 162 74 / 0.12) !important;
+}
+
+:root[data-theme='luxury-dark']
+  .compose-category-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background: rgb(200 162 74 / 0.18) !important;
+  color: var(--gold) !important;
+  font-weight: 600;
+}
+
+.compose-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1rem;
+  padding: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.compose-back-btn:hover {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--line) 35%, transparent);
+}
+
+:root[data-theme='luxury-dark'] .compose-back-btn {
+  color: var(--gold);
+}
+
+:root[data-theme='luxury-dark'] .compose-back-btn:hover {
+  color: color-mix(in srgb, var(--gold) 88%, #fff 12%);
+  background: rgb(200 162 74 / 0.12);
+}
+
+.compose-editor-textarea.ant-input {
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--text-heading) !important;
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+  line-height: 1.65;
+  box-shadow: none !important;
+}
+
+.compose-form .ant-input-textarea,
+.compose-form .ant-input-textarea-affix-wrapper {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.compose-form .ant-input-textarea textarea {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  resize: none !important;
+}
+
+.compose-editor-textarea.ant-input::placeholder {
+  color: color-mix(in srgb, var(--text-muted) 80%, #cbd5e1 20%);
+}
+
+.compose-editor-preview {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text-heading);
+  font-size: 1.16rem;
+  line-height: 1.9;
+}
+
+.compose-bottom-bar {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 1.05rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 85%, white 15%);
+  box-shadow: 0 12px 36px rgb(0 0 0 / 0.12);
+}
+
+.compose-bottom-bar p {
+  margin: 0;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.compose-bottom-bar p span {
+  margin: 0 0.45rem;
+}
+
+.compose-publish-btn.ant-btn {
+  height: 48px;
+  padding: 0 1.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-color: #0b0b10 !important;
+  background: #0b0b10 !important;
+}
+
+:root[data-theme='luxury-dark'] .compose-bottom-bar {
+  background: color-mix(in srgb, #080808 92%, #1f1f1f 8%);
+  box-shadow: 0 12px 36px rgb(0 0 0 / 0.42);
+}
+
+:root[data-theme='luxury-dark'] .compose-publish-btn.ant-btn {
+  border-color: #131313 !important;
+  background: #131313 !important;
+  color: #ede7dc !important;
+}
+
+.compose-float-tools {
+  position: fixed;
+  right: calc(max(1rem, env(safe-area-inset-right)) + 0.2rem);
+  bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 0.6rem);
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 56px;
+  padding: 1rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 1.8rem;
+  background: color-mix(in srgb, var(--bg) 86%, white 14%);
+  box-shadow: 0 10px 26px rgb(0 0 0 / 0.14);
+  transform: translateX(102%);
+}
+
+.compose-float-tools span {
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--text-muted) 75%, #cbd5e1 25%);
+}
+
+:root[data-theme='luxury-dark'] .compose-float-tools {
+  background: color-mix(in srgb, #080808 94%, #222 6%);
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.45);
+}

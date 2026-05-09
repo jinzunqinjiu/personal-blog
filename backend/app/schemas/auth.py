@@ -19,6 +19,7 @@ class UserPublic(BaseModel):
     nickname: str
     email: EmailStr
     is_vip: bool
+    avatar_url: str
 
 
 class TokenResponse(BaseModel):

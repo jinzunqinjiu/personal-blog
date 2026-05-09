@@ -17,6 +17,7 @@ export function getStoredUser(): UserPublic | null {
   }
 }
 
+/** Refresh token 仅存 HttpOnly Cookie，不落 localStorage */
 export function persistAuth(token: string, user: UserPublic): void {
   localStorage.setItem(TOKEN_KEY, token)
   localStorage.setItem(USER_KEY, JSON.stringify(user))
